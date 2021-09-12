@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthGoogleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LinksController;
+use App\Http\Controllers\RedirectController;
 use Illuminate\Routing\Router;
 
 /**
@@ -25,3 +26,5 @@ $router->group(['as' => 'oauth.', 'prefix' => '/oauth'], function (Router $route
     $router->get('/google', [AuthGoogleController::class, 'redirect'])->name('google');
     $router->get('/google/callback', [AuthGoogleController::class, 'callback'])->name('google.callback');
 });
+
+$router->get('/r/{shortLink:name}', [RedirectController::class, 'redirect'])->name('redirect');

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-10 offset-1">
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -28,13 +28,13 @@
                                 <td>{{$link->url}}</td>
                                 <td>
                                     @if($link->ttl)
-                                        {{$link->ttl}}
+                                        {{$link->ttl->format('Y-m-d H:i')}}
                                     @else
                                         <em class="text-muted">not set</em>
                                     @endif
                                 </td>
                                 <td>{{$link->visits}}</td>
-                                <td>{{$link->shareLink}}</td>
+                                <td>{{route('redirect', ['shortLink' => $link->name])}}</td>
                             </tr>
                         @endforeach
 

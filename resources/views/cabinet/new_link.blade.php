@@ -15,7 +15,7 @@
 
                         <div class="form-floating mb-3 is-invalid">
                             <input type="url" class="form-control @error('url') is-invalid @enderror" id="inputUrl"
-                                   placeholder="https://google.com" required name="url" value="{{old('url')}}">
+                                   placeholder="https://google.com" required name="url" value="{{old('url')}}" autofocus>
                             <label for="inputUrl">Destination URL</label>
                             @error('url')
                             <div class="invalid-feedback">
