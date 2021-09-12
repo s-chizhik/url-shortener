@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ShortLink;
 use Illuminate\Auth\AuthManager;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\Factory;
 
 class DashboardController
 {
     public function index(Factory $view, AuthManager $auth)
     {
-        return $view->make('dashboard', [
-            'user' => $auth->guard()->user(),
-        ]);
+        $user = $auth->guard()->user();
+
+        $links = ShortLink::query()
+            ->whereHas('user', function(Builder $builder) use ($user) {
+                $builder->where('id', $user->id);
+            })
+            ->get();
+
+        return $view->make('cabinet.dashboard', compact('user', 'links'));
     }
 }
