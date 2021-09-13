@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-10 offset-1">
+        <div class="col">
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
