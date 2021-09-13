@@ -27,4 +27,4 @@ $router->group(['as' => 'oauth.', 'prefix' => '/oauth'], function (Router $route
     $router->get('/google/callback', [AuthGoogleController::class, 'callback'])->name('google.callback');
 });
 
-$router->get('/r/{shortLink:name}', [RedirectController::class, 'redirect'])->name('redirect');
+$router->get('/r/{shortLink}', [RedirectController::class, 'redirect'])->name('redirect');

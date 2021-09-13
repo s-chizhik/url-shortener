@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\ShortLink;
-use DateTime;
+use App\Http\Binders\ShortLinkBinder;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -36,9 +35,6 @@ class RouteServiceProvider extends ServiceProvider
 
     private function configureBinding(): void
     {
-        Route::bind('shortLink', fn($value) => ShortLink::query()
-            ->where('name', $value)
-            ->whereDate('ttl', '>=', new DateTime)
-            ->firstOrFail());
+        Route::bind('shortLink', ShortLinkBinder::class . '@resolve');
     }
 }
